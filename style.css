@@ -1,0 +1,300 @@
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+:root {
+  --bodyFont: "Oswald", sans-serif;
+  --brandColor: #bbbb4f;
+}
+
+/* =====================================================
+   RESET & BASE STYLES
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+body {
+  background: #121200;
+  font-family: var(--bodyFont);
+  color: #ffffff;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   COMMON TYPOGRAPHY
+===================================================== */
+.heading {
+  font-size: 8vw;
+  line-height: 1.1;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.heading span,
+.content span {
+  color: var(--brandColor);
+}
+
+/* =====================================================
+   HERO / INTRO SECTION
+===================================================== */
+.intro {
+  height: 100vh;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.content {
+  font-size: 32px;
+  text-align: right;
+}
+
+/* =====================================================
+   ABOUT SECTION
+===================================================== */
+.about {
+  min-height: 75vh;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.8rem;
+  max-width: 1100px;
+  margin-left: 6vw;
+  text-align: left;
+  position: relative;
+}
+
+.about-text {
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.7;
+  max-width: 850px;
+  color: #f6f2e8;
+}
+
+.about-text span {
+  color: var(--brandColor);
+  font-weight: 500;
+}
+
+/* decorative vertical line */
+.about::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  width: 2px;
+  height: 80%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--brandColor),
+    transparent
+  );
+}
+
+/* =====================================================
+   PROJECTS – HORIZONTAL SCROLL SECTION
+===================================================== */
+#horizontal-scroll {
+  padding: 160px 0;
+}
+
+/* section heading */
+.projects-heading {
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 80px;
+  text-align: center;
+  color: var(--brandColor);
+}
+
+/* scroll wrapper */
+.horizontal-scroll-wrapper {
+  height: 55vh;
+  overflow: hidden;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 45vw;
+}
+
+.horizontal > div {
+  padding: 0 4vw;
+}
+
+/* project card base */
+.horizontal .card {
+  width: 28vw;
+  padding: 50px 40px;
+  border: 2px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f6f2e8;
+}
+
+/* card number */
+.card .count {
+  font-size: 7vw;
+  font-weight: bold;
+  color: var(--brandColor);
+  line-height: 1.4;
+}
+
+/* project title */
+.project-title {
+  font-size: 2.2vw;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+/* project description */
+.project-desc {
+  font-size: 1.1vw;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin-bottom: 18px;
+}
+
+/* tech stack pills */
+.project-tech {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-tech span {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--brandColor);
+}
+
+/* link reset + hover */
+.project-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card {
+  transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.project-link:hover .project-card {
+  transform: translateY(-12px) scale(1.03);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+}
+
+/* =====================================================
+   VISION SECTION (RIGHT ALIGNED)
+===================================================== */
+.vision-section {
+  min-height: 75vh;
+  padding: 4rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: 6vw;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6rem;
+  position: relative;
+}
+
+.vision-section .vision-text {
+  max-width: 900px;
+  margin-left: auto;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* right decorative line */
+.vision-section::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 2px;
+  height: 80%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--brandColor),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* skills row */
+.learning-focus {
+  margin-top: 1.5rem;
+  font-size: clamp(18px, 1.8vw, 24px);
+  color: #d6d6d6;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.learning-focus span {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 8px 16px;
+  border-radius: 22px;
+  font-size: 16px;
+  color: var(--brandColor);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.footer-socials a {
+  font-size: 22px;
+  color: #ffffff;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+  opacity: 1;
+  color: var(--brandColor);
+  transform: translateY(-3px);
+}
+
+/* =====================================================
+   PARTICLE BACKGROUND CANVAS
+===================================================== */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #121200;
+}
