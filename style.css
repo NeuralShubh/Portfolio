@@ -1,303 +1,94 @@
 /* =====================================================
-   GLOBAL VARIABLES
+   1. GLOBAL VARIABLES
 ===================================================== */
 :root {
   --bodyFont: "Oswald", sans-serif;
-  --brandColor: #bbbb4f;
+  --brandColor: #900f0f; /* Your signature yellow/gold */
+  --bgDark: #121200;    /* Deep, dark background */
+  --textPrimary: #ffffff;
+  --textSecondary: #f6f2e8;
 }
 
+#particles-js {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* -1 ensures it stays behind your 'Vision' and 'Project' sections */
+  z-index: -1 !important; 
+  background-color: #000000; 
+}
+
+/* IMPORTANT: Every section MUST be transparent to see the red particles */
+main, section, .hero-wrapper, .about-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
 
 /* =====================================================
-   RESET & BASE STYLES
+   2. RESET & BASE STYLES
 ===================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  border: none;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
-  background: #121200;
+  background-color: var(--bgDark);
   font-family: var(--bodyFont);
-  color: #ffffff;
-  text-align: center;
-  overflow-x: hidden;
+  color: var(--textPrimary);
+  line-height: 1.5;
+  overflow-x: hidden; /* Prevents horizontal shaking */
 }
 
 /* =====================================================
-   COMMON TYPOGRAPHY
+   3. REVEAL UTILITIES (The Animation Engine)
+===================================================== */
+/* This is the secret to high-end 'Rise-up' text animations */
+.line {
+  display: block;
+  overflow: hidden; /* Acts as a mask for the text */
+  margin-bottom: 0.2rem;
+}
+
+.reveal-text .mid-name {
+  display: block;
+  transform: translateY(110%); /* Starts hidden 'under' the floor */
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+/* =====================================================
+   4. TYPOGRAPHY HELPERS
 ===================================================== */
 .heading {
-  font-size: 8vw;
-  line-height: 1.1;
-  font-weight: bold;
   text-transform: uppercase;
-}
-
-.heading span,
-.content span {
-  color: var(--brandColor);
-}
-
-/* =====================================================
-   HERO / INTRO SECTION
-===================================================== */
-.intro {
-  height: 100vh;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-}
-
-.content {
-  font-size: 32px;
-  text-align: right;
-}
-
-/* =====================================================
-   ABOUT SECTION
-===================================================== */
-.about {
-  min-height: 75vh;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.8rem;
-  max-width: 1100px;
-  margin-left: 6vw;
-  text-align: left;
-  position: relative;
-}
-
-.about-text {
-  font-size: clamp(18px, 2vw, 26px);
-  line-height: 1.7;
-  max-width: 850px;
-  color: #f6f2e8;
-}
-
-.about-text span {
-  color: var(--brandColor);
-  font-weight: 500;
-}
-
-/* decorative vertical line */
-.about::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 15%;
-  width: 2px;
-  height: 80%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--brandColor),
-    transparent
-  );
-}
-
-/* =====================================================
-   PROJECTS – HORIZONTAL SCROLL SECTION
-===================================================== */
-#horizontal-scroll {
-  padding: 160px 0;
-}
-
-/* section heading */
-.projects-heading {
-  font-size: clamp(48px, 6vw, 96px);
   font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-bottom: 80px;
-  text-align: center;
-  color: var(--brandColor);
 }
 
-/* scroll wrapper */
-.horizontal-scroll-wrapper {
-  height: 55vh;
-  overflow: hidden;
-}
-
-.horizontal {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding-left: 45vw;
-}
-
-.horizontal > div {
-  padding: 0 4vw;
-}
-
-/* project card base */
-.horizontal .card {
-  width: 28vw;
-  padding: 50px 40px;
-  border: 2px solid #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #f6f2e8;
-}
-
-/* card number */
-.card .count {
-  font-size: 7vw;
-  font-weight: bold;
-  color: var(--brandColor);
-  line-height: 1.4;
-}
-
-/* project title */
-.project-title {
-  font-size: 2.2vw;
-  font-weight: 400;
-  margin-bottom: 14px;
-}
-
-/* project description */
-.project-desc {
-  font-size: 1.1vw;
-  line-height: 1.5;
-  opacity: 0.8;
-  margin-bottom: 18px;
-}
-
-/* tech stack pills */
-.project-tech {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.project-tech span {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  color: var(--brandColor);
-}
-
-/* link reset + hover */
-.project-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.project-card {
-  transition: transform 0.4s ease, background 0.4s ease;
-}
-
-.project-link:hover .project-card {
-  transform: translateY(-12px) scale(1.03);
-  background: rgba(255, 255, 255, 0.04);
-  cursor: pointer;
-}
-
-/* =====================================================
-   VISION SECTION (RIGHT ALIGNED)
-===================================================== */
-.vision-section {
-  min-height: 75vh;
-  padding: 4rem;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: 6vw;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.6rem;
-  position: relative;
-}
-
-.vision-section .vision-text {
-  max-width: 900px;
-  margin-left: auto;
-  font-size: clamp(18px, 2vw, 26px);
-  line-height: 1.7;
-  opacity: 0.9;
-}
-
-/* right decorative line */
-.vision-section::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 15%;
-  width: 2px;
-  height: 80%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--brandColor),
-    transparent
-  );
-  opacity: 0.6;
-}
-
-/* skills row */
-.learning-focus {
-  margin-top: 1.5rem;
-  font-size: clamp(18px, 1.8vw, 24px);
-  color: #d6d6d6;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.learning-focus span {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 8px 16px;
-  border-radius: 22px;
-  font-size: 16px;
+.heading span {
   color: var(--brandColor);
 }
 
 /* =====================================================
-   FOOTER
-===================================================== */
-.footer {
-  padding: 2.5rem;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.footer-socials a {
-  font-size: 22px;
-  color: #ffffff;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-
-.footer-socials a:hover {
-  opacity: 1;
-  color: var(--brandColor);
-  transform: translateY(-3px);
-}
-
-/* =====================================================
-   PARTICLE BACKGROUND CANVAS
+   5. BACKGROUND LAYER
 ===================================================== */
 #particle-canvas {
   position: fixed;
   inset: 0;
-  z-index: -1;
-  background: #121200;
+  z-index: -1; /* Always stays behind content */
+  background: var(--bgDark);
 }
 
 
@@ -305,156 +96,850 @@ body {
 
 
 /* =====================================================
-   CERTIFICATES — CENTER BASED LEFT / RIGHT DESIGN
+   HERO SECTION STYLES
 ===================================================== */
-
-.timeline-section {
-  padding: 170px 0;
-}
-
-/* Heading */
-
-.certificates-heading {
-  font-size: clamp(56px, 7vw, 110px);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  margin-bottom: 130px;
-  text-align: center;
-  color: var(--brandColor);
-}
-
-/* Timeline Container */
-
-.timeline {
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* Vertical Stack */
-
-.timeline-items {
+/* =====================================================
+   FIXED HERO - MAXIMIZING SPACE
+===================================================== */
+.intro {
+  height: 100vh;
+  width: 100%;
+  padding: 0 4vw; /* Reduced side padding from 8vw to 4vw */
   display: flex;
   flex-direction: column;
-  gap: 160px;
+  justify-content: center;
+  position: relative;
+  background: var(--bgDark);
 }
 
-/* Row */
-
-.timeline-item {
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Increased from 80vh to use more vertical space */
+  justify-content: space-between;
   width: 100%;
+}
+
+/* =====================================================
+   HERO TITLE - FIXING TRIMMED TEXT
+===================================================== */
+.hero-title {
+  /* Increased from 16vw to 18vw to really fill the width */
+  font-size: clamp(65px, 18vw, 220px); 
+  
+  /* Increased from 0.8 to 0.9 to prevent bottom trimming */
+  line-height: 0.9; 
+  
+  letter-spacing: -0.04em;
+  margin-top: 2vh; 
+  margin-left: -0.05em; 
+}
+
+/* Add this new rule to give the letters extra space inside the mask */
+.hero-title .line {
+  padding-bottom: 0.1em; /* This acts as a 'buffer' so the bottom isn't cut */
+  margin-bottom: -0.1em; /* Offsets the padding to keep spacing tight */
+}
+
+/* 2. Middle Content (Degree & Typewriter) */
+.hero-content {
+  margin-top: 0; /* Removed top margin to prevent "middle-squash" */
+  padding-left: 2px;
+}
+
+.hero-content p {
+  font-size: clamp(20px, 2.8vw, 34px);
+  font-weight: 300;
+  color: var(--textSecondary);
+  max-width: 900px; /* Allowed more width */
+  margin-bottom: 15px;
+}
+
+/* 3. Bottom Footer */
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 30px; /* Pushes content closer to the actual bottom */
+}
+
+.hero-subtext {
+  font-size: clamp(12px, 1.2vw, 20px);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #900f0f;
+  font-weight: 600;
+}
+
+/* 4. Typewriter ID */
+#typewriter {
+  color: var(--brandColor);
+  font-weight: 600;
+}
+
+/* =====================================================
+   SCROLL INDICATOR (MOUSE)
+===================================================== */
+.scroll-down-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-down-wrap span {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
+
+.mouse {
+  width: 25px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
   display: flex;
   justify-content: center;
+  padding-top: 8px;
 }
 
-/* Clickable Wrapper */
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--brandColor);
+  border-radius: 2px;
+  animation: scrollWheel 1.5s infinite;
+}
 
-.certificate-link {
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   REDESIGNED ABOUT - FULL WIDTH LAYOUT
+===================================================== */
+.about {
+  min-height: 110vh; /* Extra height to give animations more trigger room */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 100px 4vw;
+  background: var(--bgDark);
+  overflow: hidden;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1600px; /* Expands to fill your wide screen */
+  margin: 0 auto;
+}
+
+.about-header {
+  margin-bottom: 80px;
+}
+
+.about-header .heading {
+  font-size: clamp(50px, 8vw, 100px);
+  letter-spacing: -2px;
+}
+
+/* Flex Layout: Left (Text) and Right (Grid) */
+.about-flex-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8vw;
+}
+
+.about-column.text-col {
+  flex: 1.2;
+}
+
+.about-description {
+  /* Slightly reduced font size for 4 lines to look cleaner */
+  font-size: clamp(18px, 1.8vw, 26px); 
+  line-height: 1.5;
+  color: rgb(234, 229, 229);
+  /* Adjusted margin for vertical balance */
+  margin-bottom: 25px; 
+}
+
+.about-description span {
+  color: #900f0f;
+  font-weight: 500;
+}
+
+/* Expertise Grid */
+.about-column.grid-col {
+  flex: 1;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.expertise-item {
+  background: rgba(201, 47, 47, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 30px;
+  transition: border-color 0.3s ease;
+}
+
+.expertise-item:hover {
+  border-color: var(--brandColor);
+}
+
+.exp-label {
+  display: block;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgb(234, 229, 229);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.expertise-item h4 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #900f0f;
+}
+
+.expertise-item p {
+  font-size: 15px;
+  color: rgb(234, 229, 229);
+  line-height: 1.4;
+}
+
+/* =====================================================
+   ANIMATION STARTING STATES (CRITICAL FOR SCROLL-BACK)
+===================================================== */
+.about .reveal-text .mid-name {
+  transform: translateY(110%);
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth fade during reverse */
+}
+
+.expertise-item.reveal-text .mid-name {
+  transform: translateY(50px); /* Vertical slide for cards */
+  opacity: 0;
+}
+
+#mid-name {
+  color: rgb(234, 229, 229);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-flex-layout {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
+
+#projects-horizontal {
+  position: relative;
+  width: 100%;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+.horizontal-sticky-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* This centers the cards vertically so they don't get trimmed */
+  justify-content: center; 
+  padding: 0 5vw;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.projects-main-header {
+  margin-bottom: 4vh;
+}
+
+.projects-main-header .heading {
+  font-size: clamp(50px, 10vw, 150px);
+  color: rgb(234, 229, 229);
+  letter-spacing: -4px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.horizontal-track {
+  display: flex;
+  gap: 40px;
+  width: max-content !important;
+  will-change: transform;
+  /* Reduced from 15vw to 5vw to bring the last card closer to the edge */
+  padding-right: 5vw; 
+}
+
+/* --- Improved Card Design --- */
+.project-card {
+  flex-shrink: 0;
+  /* Ensure card height is responsive so it doesn't get trimmed on smaller screens */
+  height: clamp(400px, 70vh, 550px); 
+  width: clamp(300px, 25vw, 480px);
+  background: rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-inner {
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  border-color: var(--brandColor);
+  background: rgba(207, 48, 48, 0.05); /* Subtle Cyan glow */
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-num {
+  font-family: 'Oswald', sans-serif;
+  color: rgb(234, 229, 229);
+  font-size: 24px;
+  opacity: 1;
+}
+
+.project-tag {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgb(234, 229, 229);
+}
+
+.card-content h3 {
+  font-size: clamp(22px, 1.8vw, 40px);
+  margin-bottom: 15px;
+  line-height: 1.2;
+  color: #900f0f;
+}
+
+/* ADD THIS TO YOUR STYLE.CSS TO KILL THE PURPLE SOURCE */
+
+.project-card, 
+.project-card:hover, 
+.project-card:visited {
+  text-decoration: none !important; /* This kills the browser's default underline */
+  color: inherit;                 /* This kills the browser's default purple color */
+}
+
+.project-card h3 {
+  text-decoration: none !important; /* Double check to ensure the heading stays clean */
+}
+
+.card-content p {
+  font-size: 20px;
+  color: rgb(234, 229, 229);
+  line-height: 2.0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.pill {
+  font-size: 15px;
+  background: rgba(201, 47, 47, 0.02);
+  padding: 4px 10px;
+  color: rgb(234, 229, 229);
+}
+
+.visit-btn i {
+  color: var(--brandColor);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .visit-btn i {
+  transform: translateX(10px);
+}
+
+
+
+
+
+
+
+/* =====================================================
+   1. TIMELINE CONTAINER & TRACK
+===================================================== */
+#certificates {
+  padding: 40px 4vw 100px; /* Reduced from 100px to 40px at the top */
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.about-header {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 40px;
+}
+
+.timeline-wrapper {
+  position: relative;
+  max-width: 1400px;
+  margin: 60px auto 0 auto; /* Reduced from 100px to 60px */
+  padding-top: 100px; 
+}
+
+/* THE JOURNEY LABEL: Black box with #900f0f border */
+.timeline-start-label {
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: #000;
+  border: 1px solid #900f0f;
+  padding: 15px 35px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(144, 15, 15, 0.2);
+}
+
+.timeline-start-label span {
+  font-family: var(--font-tech);
+  color: #fff;
+  font-size: 18px; 
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+
+/* VERTICAL LINE: Starts below 'The Journey' */
+.timeline-track {
+  position: absolute;
+  left: 50%;
+  top: 55px; 
+  width: 2px;
+  height: calc(100% - 55px);
+  background: linear-gradient(to bottom, #900f0f 0%, #900f0f 90%, transparent);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* =====================================================
+   2. TIMELINE ITEM & ZIGZAG LOGIC
+===================================================== */
+.timeline-item {
+  display: flex;
+  width: 100%;
+  margin-bottom: 120px;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-item:nth-child(odd) { justify-content: flex-end; padding-left: 50%; }
+.timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 50%; }
+
+/* =====================================================
+   3. THE CERTIFICATE CARD (CENTERED STYLE)
+===================================================== */
+.cert-card {
+  opacity: 0;
+  width: 85%;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  display: block;
+  text-align: center;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cert-card *, .cert-card:visited {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.cert-card:hover {
+  background: rgba(144, 15, 15, 0.04);
+  border-color: rgba(144, 15, 15, 0.4);
+  transform: translateY(-8px);
+}
+
+/* =====================================================
+   4. TITLES, ISSUER & FOOTER SPACING
+===================================================== */
+.issuer-label {
+  display: block !important;
+  font-family: var(--font-tech);
+  font-size: 16px; 
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.cert-title {
+  display: block !important;
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 4vw, 36px);
+  color: #900f0f !important; /* Deep Red Certificate Name */
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.cert-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.cert-card:hover .cert-title::after {
+  width: 100%;
+  left: 0;
+}
+
+.cert-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: #b0b0b0;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* SPACE ADDED: Separating View Credential from text */
+.cert-footer {
+  margin-top: 25px; 
+  display: block;
+}
+
+.view-link {
+  font-family: var(--font-tech);
+  font-size: 12px;
+  color: #900f0f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+
+.cert-card:hover .view-link {
+  color: #fff;
+}
+
+/* =====================================================
+   5. CENTER DOT POP & LARGER YEAR
+===================================================== */
+.timeline-dot {
+  transform: translateX(-50%) scale(0);
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  width: 14px;
+  height: 14px;
+  background: #000;
+  border: 2px solid #900f0f;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 5;
+}
+
+.timeline-item:hover .timeline-dot {
+  background: #900f0f;
+  transform: translateX(-50%) scale(1.8); 
+  box-shadow: 0 0 25px #900f0f, 0 0 50px rgba(144, 15, 15, 0.5);
+  border: 2px solid #fff !important; 
+}
+
+/* LARGER YEAR SIZE */
+.time-stamp {
+  position: absolute;
+  left: 50%;
+  top: 42px;
+  font-family: var(--font-tech);
+  color: #900f0f;
+  font-size: 18px;
+  font-weight: 800;
+  /* REDUCED FROM -240% TO -160% TO BRING IT CLOSER */
+  transform: translateX(-160%); 
+  opacity: 0; /* JS will handle visibility */
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.timeline-item:nth-child(even) .time-stamp { 
+  transform: translateX(60%);
+}
+
+/* =====================================================
+   6. MOBILE RESPONSIVE FIX
+===================================================== */
+@media (max-width: 992px) {
+  .timeline-track { left: 30px; transform: none; }
+  .timeline-dot { left: 30px; transform: scale(0.8); }
+  .time-stamp { left: 55px; transform: none !important; top: 15px; font-size: 16px; }
+  .timeline-item { padding: 0 0 0 70px !important; justify-content: flex-start !important; }
+  .cert-card { width: 100%; opacity: 0; padding: 30px; }
+  .timeline-start-label { left: 30px; transform: none; padding: 10px 20px; }
+  .timeline-start-label span { font-size: 14px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   1. FOOTER BASE & WATERMARK
+===================================================== */
+#main-footer {
+  position: relative;
+  /* Deep Charcoal Background */
+  background: #050505; 
+  padding: 140px 4vw 60px;
+  overflow: hidden;
+  border-top: 1px solid rgba(144, 15, 15, 0.2);
+}
+
+.footer-watermark {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+}
+
+.watermark-text {
+  font-family: var(--font-heading);
+  font-size: clamp(100px, 25vw, 400px);
+  /* Stealth Red Watermark */
+  color: rgba(144, 15, 15, 0.03); 
+  font-weight: 900;
+  letter-spacing: -10px;
+  text-transform: uppercase;
+  user-select: none;
+  display: inline-block; /* Essential for GSAP parallax movement */
+}
+
+/* =====================================================
+   2. CALL TO ACTION (CTA) - CAREER FOCUS
+===================================================== */
+.footer-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-cta {
+  text-align: center;
+  margin-bottom: 120px;
+}
+
+.cta-label {
+  font-family: var(--font-tech);
+  color: #900f0f; /* Deep Red Branding */
+  letter-spacing: 6px;
+  font-size: 16px; 
+  font-weight: 700;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.cta-title {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 8vw, 85px);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 60px;
+}
+
+.cta-title .highlight {
+  color: #900f0f;
+}
+
+.cta-button {
   display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 50px;
+  background: transparent;
+  border: 1px solid #900f0f;
+  color: #fff;
+  text-decoration: none !important;
+  font-family: var(--font-tech);
+  letter-spacing: 3px;
+  font-weight: 600;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  will-change: transform; /* Optimization for Magnetic JS effect */
+}
+
+/* WhatsApp Green Hover State */
+.cta-button:hover {
+  background: #25d366; 
+  border-color: #25d366;
+  box-shadow: 0 0 40px rgba(37, 211, 102, 0.3);
+}
+
+/* =====================================================
+   3. SOCIAL LINKS (ANIMATION START STATES)
+==================================================== */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 60px;
+}
+
+.footer-socials {
+  display: flex;
+  /* Uniform Wide Spacing */
+  gap: 75px; 
+}
+
+.social-link {
+  color: #fff;
+  font-size: 24px;
   text-decoration: none;
-  color: inherit;
+  position: relative;
+  transition: color 0.4s, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* START STATE: Hidden for GSAP reveal */
+  opacity: 0; 
+  transform: translateY(20px);
 }
 
-/* Card Style */
-
-.timeline-content {
-  width: 460px;
-  padding: 36px 34px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(6px);
-  transition: all 0.4s ease;
+.social-link:hover {
+  color: #900f0f;
+  transform: scale(1.3) translateY(-5px) !important;
 }
 
-/* LEFT POSITION (FROM CENTER) */
-
-.timeline-item.left .timeline-content {
-  transform: translateX(-300px);
+/* Corrected Tooltip Height */
+.social-link::before {
+  content: attr(data-name);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-family: var(--font-tech);
+  letter-spacing: 2px;
+  color: #900f0f;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
 }
 
-/* RIGHT POSITION (FROM CENTER) */
-
-.timeline-item.right .timeline-content {
-  transform: translateX(300px);
+.social-link:hover::before {
+  opacity: 1;
+  top: -30px; 
 }
 
-/* Title */
-
-.timeline-content h3 {
-  font-size: clamp(22px, 1.8vw, 30px);
+/* =====================================================
+   4. INFO, LEGAL & ACCENT
+===================================================== */
+.footer-info p {
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
   margin-bottom: 12px;
 }
 
-/* Description */
-
-.timeline-content p {
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.6;
-  opacity: 0.85;
+.red-text {
+  color: #900f0f;
+  font-weight: 700;
 }
 
-/* Badge */
-
-.timeline-content span {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: var(--brandColor);
-  border: 1px solid rgba(187, 187, 79, 0.4);
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  font-size: 12px;
+  margin-right: 20px;
+  transition: color 0.3s ease;
 }
 
-/* =========================
-   HOVER EFFECT
-========================= */
-
-.timeline-item.left .timeline-content:hover {
-  transform: translateX(-300px) translateY(-10px) scale(1.05);
-  border-color: var(--brandColor);
-  box-shadow: 0 0 30px rgba(187, 187, 79, 0.35);
+.footer-legal a:hover {
+  color: #fff;
 }
 
-.timeline-item.right .timeline-content:hover {
-  transform: translateX(300px) translateY(-10px) scale(1.05);
-  border-color: var(--brandColor);
-  box-shadow: 0 0 30px rgba(187, 187, 79, 0.35);
+.footer-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #900f0f;
 }
 
-/* =========================
-   ACTIVE STATE (FOR JS)
-========================= */
-
-.timeline-item.left .timeline-content.active {
-  transform: translateX(-300px) scale(1.08);
-  border-color: var(--brandColor);
-  box-shadow: 0 0 40px rgba(187, 187, 79, 0.55);
-}
-
-.timeline-item.right .timeline-content.active {
-  transform: translateX(300px) scale(1.08);
-  border-color: var(--brandColor);
-  box-shadow: 0 0 40px rgba(187, 187, 79, 0.55);
-}
-
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-
+/* =====================================================
+   5. MOBILE RESPONSIVENESS
+===================================================== */
 @media (max-width: 900px) {
-
-  .timeline-item {
-    justify-content: center;
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 60px;
   }
-
-  .timeline-content {
-    width: 92%;
-    transform: translateX(0) !important;
+  
+  .footer-socials {
+    order: 1;
+    gap: 40px;
   }
-
 }
-
-
-
-
