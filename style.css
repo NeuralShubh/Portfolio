@@ -280,7 +280,7 @@ body {
 }
 
 .expertise-item {
-  background: rgba(201, 47, 47, 0.02);
+  background: #000;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 40px 30px;
   transition: border-color 0.3s ease;
@@ -295,9 +295,13 @@ body {
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: rgb(234, 229, 229);
+  color:rgba(234, 229, 229, 0.7);
   margin-bottom: 15px;
   font-weight: 700;
+}
+
+.expertise-item:hover .exp-label {
+  color: rgb(234, 229, 229);
 }
 
 .expertise-item h4 {
@@ -308,8 +312,39 @@ body {
 
 .expertise-item p {
   font-size: 15px;
-  color: rgb(234, 229, 229);
+  color:rgba(234, 229, 229, 0.7);
   line-height: 1.4;
+}
+
+.expertise-item:hover p {
+  color: rgb(234, 229, 229);
+}
+
+.expertise-title {
+  display: inline-block;
+  position: relative;
+  transition: color 0.4s ease;
+  margin-bottom: 10px;
+}
+
+.expertise-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: rgb(234, 229, 229); 
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.expertise-item:hover .expertise-title::after {
+  width: 100%;
+  left: 0;
+}
+
+.expertise-item:hover .expertise-title {
+  color: #900f0f;
 }
 
 @media (max-width: 1024px) {
@@ -377,7 +412,7 @@ body {
   flex-shrink: 0;
   height: clamp(400px, 70vh, 550px); 
   width: clamp(300px, 25vw, 480px);
-  background: rgba(255, 255, 255, 0.02);
+  background: #000;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none !important;
@@ -386,26 +421,76 @@ body {
   filter: blur(15px);
   transform: scale(0.9) translateY(30px);
   will-change: transform, opacity, filter;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-title {
+  display: inline-block;
+  position: relative;
+  transition: color 0.4s ease;
+  font-family: var(--bodyFont); 
+}
+
+.project-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  background: #ff0000; 
+  transition: width 0.8s ease, left 0.8s ease;
+}
+
+.project-card:hover .project-title::after {
+  width: 100%;
+  left: 0;
+}
+
+.project-card:hover .project-title {
+  color: #900f0f;
 }
 
 .card-inner {
+  position: relative;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   height: 100%;
-  padding: 40px;
+  padding: 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.4s ease;
+  overflow: hidden;
 }
 
 .project-card:hover {
   border-color: #900f0f;
-  background: rgba(144, 15, 15, 0.05);
+  background: rgba(117, 42, 42, 0.05);
+  transform: translateY(-10px);
+}
+
+.project-card:hover .card-inner {
+  border-color: #000;
+  background: rgba(144, 15, 15, 0.04);
+  box-shadow: 
+    0 0 30px rgba(144, 15, 15, 0.2), 
+    0 0 60px rgba(144, 15, 15, 0.1),
+    inset 0 0 20px rgba(144, 15, 15, 0.05);
 }
 
 .card-num {
   font-family: 'Oswald', sans-serif;
-  color: rgba(234, 229, 229, 0.4);
+  color: #900f0f;
   font-size: 20px;
   font-weight: 700;
+  padding: 6px 12px;
+}
+
+.project-card:hover .card-num {
+  color: rgba(234, 229, 229, 0.7);
+  background: #570a0a;
+  padding: 6px 12px;
 }
 
 .card-top {
@@ -418,12 +503,19 @@ body {
 
 .project-tag {
   font-family: 'Oswald', sans-serif;
-  font-size: 14px;
+  font-size: 17px;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #900f0f;
   font-weight: 600;
   text-align: right;
+  padding: 6px 12px;
+}
+
+.project-card:hover .project-tag {
+  color: rgba(234, 229, 229, 0.7);
+  background: #570a0a;
+  padding: 6px 12px;
 }
 
 .card-content h3 {
@@ -431,12 +523,23 @@ body {
   margin-bottom: 15px;
   line-height: 1.2;
   color: #ffffff;
+  padding: 6px 12px;
+}
+
+.project-card:hover .card-content h3 {
+  color: #c30c0c;
+  background: #e8dbdb;
+  padding: 6px 12px;
 }
 
 .card-content p {
   font-size: 18px;
   color: rgba(234, 229, 229, 0.7);
   line-height: 1.6;
+}
+
+.project-card:hover .card-content p {
+  color: rgb(234, 229, 229);
 }
 
 .card-footer {
@@ -448,17 +551,31 @@ body {
 }
 
 .pill {
-  font-size: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 6px 12px;
-  color: rgb(234, 229, 229);
+  font-size: 15px;
+  color: #900f0f;
   text-transform: uppercase;
   margin-right: 8px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  padding: 6px 12px;
+}
+
+.project-card:hover .pill {
+  color: rgba(234, 229, 229, 0.7);
+  background: #570a0a;
+  padding: 6px 12px;
 }
 
 .visit-btn i {
   color: #900f0f;
-  font-size: 18px;
+  font-size: 20px;
+  padding: 6px 12px;
+}
+
+.project-card:hover .visit-btn i {
+  color: rgba(234, 229, 229, 0.7);
+  background: #570a0a;
+  padding: 6px 12px;
 }
 
 #certificates {
@@ -556,9 +673,12 @@ body {
 }
 
 .cert-card:hover {
-  background: rgba(144, 15, 15, 0.04);
-  border-color: rgba(144, 15, 15, 0.4);
+  background: rgba(144, 15, 15, 0.05);
+  border-color: #900f0f;
   transform: translateY(-8px);
+  box-shadow: 
+    0 0 25px rgba(144, 15, 15, 0.25), 
+    0 0 50px rgba(144, 15, 15, 0.1);
 }
 
 .issuer-label {
@@ -587,9 +707,9 @@ body {
   bottom: -5px;
   left: 50%;
   width: 0;
-  height: 2px;
+  height: 3px;
   background: #fff;
-  transition: width 0.4s ease, left 0.4s ease;
+  transition: width 0.7s ease, left 0.7s ease;
 }
 
 .cert-card:hover .cert-title::after {
@@ -620,7 +740,7 @@ body {
 }
 
 .cert-card:hover .view-link {
-  color: #fff;
+  color: #ffffff;
 }
 
 .timeline-dot {
@@ -881,5 +1001,3 @@ body {
     gap: 40px;
   }
 }
-
-
