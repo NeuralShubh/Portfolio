@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update active link on scroll with smooth tracking
   const updateActiveLink = () => {
     const sections = document.querySelectorAll("section[id], footer");
-    
+
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.clientHeight;
-      
+
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         navLinks.forEach(link => {
           link.classList.remove("active");
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const targetId = href.substring(1);
         const targetElement = document.getElementById(targetId);
-        
+
         if (targetElement) {
           const offsetTop = targetElement.offsetTop - 70;
           window.scrollTo({
@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typewriterElement) {
     new Typewriter(typewriterElement, {
       strings: [
-        'Intelligent Systems', 
-        'Machine Learning Models', 
+        'Intelligent Systems',
+        'Machine Learning Models',
         'Statistical Insights',
         'Data-Driven Solutions'
       ],
@@ -156,8 +156,8 @@ const initAboutAnimations = () => {
     ease: "cubic.out",
     scrollTrigger: {
       trigger: ".about-header",
-      start: "top 85%", 
-      toggleActions: "play reverse play reverse", 
+      start: "top 85%",
+      toggleActions: "play reverse play reverse",
     }
   });
 
@@ -169,8 +169,8 @@ const initAboutAnimations = () => {
     ease: "cubic.out",
     scrollTrigger: {
       trigger: ".about-header",
-      start: "top 85%", 
-      toggleActions: "play reverse play reverse", 
+      start: "top 85%",
+      toggleActions: "play reverse play reverse",
     }
   });
 
@@ -181,8 +181,8 @@ const initAboutAnimations = () => {
     ease: "cubic.out",
     scrollTrigger: {
       trigger: ".about-header",
-      start: "top 85%", 
-      toggleActions: "play reverse play reverse", 
+      start: "top 85%",
+      toggleActions: "play reverse play reverse",
     }
   });
 
@@ -322,10 +322,10 @@ const initAccomplishmentsTimeline = () => {
     transformOrigin: "top center",
     ease: "none",
     scrollTrigger: {
-      trigger: "#certificates", 
-      start: "top 40%",         
+      trigger: "#certificates",
+      start: "top 40%",
       end: "bottom 80%",
-      scrub: 1.2, 
+      scrub: 1.2,
     }
   });
 
@@ -353,9 +353,9 @@ const initAccomplishmentsTimeline = () => {
     const revealTl = gsap.timeline({
       scrollTrigger: {
         trigger: item,
-        start: isMobile ? "top 92%" : "top 85%", 
-        end: isMobile ? "top 45%" : "top -20%",  
-        toggleActions: isMobile ? "play none none none" : "play reverse play reverse", 
+        start: isMobile ? "top 92%" : "top 85%",
+        end: isMobile ? "top 45%" : "top -20%",
+        toggleActions: isMobile ? "play none none none" : "play reverse play reverse",
       }
     });
 
@@ -375,18 +375,18 @@ const initAccomplishmentsTimeline = () => {
       duration: 0.4,
       ease: "back.out(1.7)"
     })
-    .to(year, {
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    }, "-=0.2")
-    .to(card, {
-      opacity: 1,
-      x: 0,
-      duration: 0.7,
-      startAt: { x: isEven ? 80 : -80 }, 
-      ease: "power3.out"
-    }, "-=0.3");
+      .to(year, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out"
+      }, "-=0.2")
+      .to(card, {
+        opacity: 1,
+        x: 0,
+        duration: 0.7,
+        startAt: { x: isEven ? 80 : -80 },
+        ease: "power3.out"
+      }, "-=0.3");
   });
 };
 
@@ -407,7 +407,7 @@ const initFooterAnimations = () => {
     ease: "none",
     scrollTrigger: {
       trigger: "#main-footer",
-      start: "top bottom", 
+      start: "top bottom",
       end: "bottom top",
       scrub: 1.5,
     }
@@ -422,12 +422,12 @@ const initFooterAnimations = () => {
     scrollTrigger: {
       trigger: ".footer-bottom",
       start: "top 92%",
-      toggleActions: "play none none none" 
+      toggleActions: "play none none none"
     }
   });
 
   const ctaBtn = document.querySelector(".cta-button");
-  
+
   if (ctaBtn) {
     ctaBtn.addEventListener("mousemove", (e) => {
       const rect = ctaBtn.getBoundingClientRect();
@@ -447,7 +447,7 @@ const initFooterAnimations = () => {
         x: 0,
         y: 0,
         duration: 0.7,
-        ease: "elastic.out(1, 0.3)" 
+        ease: "elastic.out(1, 0.3)"
       });
     });
   }
@@ -455,7 +455,7 @@ const initFooterAnimations = () => {
 
 window.addEventListener("load", () => {
   initFooterAnimations();
-  
+
   // Initialize particles.js after everything is loaded
   if (typeof particlesJS !== 'undefined') {
     particlesJS("particles-js", {
@@ -480,7 +480,7 @@ window.addEventListener("load", () => {
           "enable": true,
           "distance": 150,
           "color": "#FFEB99",
-          "opacity": 0.3, 
+          "opacity": 0.3,
           "width": 1
         },
         "move": {
@@ -523,7 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "enable": true,
             "distance": 150,
             "color": "#FFEB99",
-            "opacity": 0.3, 
+            "opacity": 0.3,
             "width": 1
           },
           "move": {
